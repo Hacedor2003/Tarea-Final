@@ -26,6 +26,8 @@ int main(void) {
     menu(Libros);
 
 
+    printf("PRUEBA\n)";
+
     return 0;
 }
 
