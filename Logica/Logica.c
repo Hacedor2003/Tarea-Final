@@ -131,9 +131,4 @@ int calcular_libros_mas_prestados(Registro Libros[],int *contador1, int *guardar
 }
 
 
-
-
-
-
-
-
+// Prueba
