@@ -1,6 +1,7 @@
 #include "Logica/Datos.h"
 #include <stdbool.h>
 
+
 void inicializar(Registro Libros[]);
 
 void inicializar_cero(Registro Libros[]);

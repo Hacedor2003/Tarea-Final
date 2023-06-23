@@ -11,10 +11,10 @@ typedef struct registro
     long identificador;
     int copias;
     int anno;
+    int numero_prestamos[MESES];
     char materia[50];
     char titulo[50];
     char autor[50];
-    int numero_prestamos[MESES];
 }Registro;
 
 
