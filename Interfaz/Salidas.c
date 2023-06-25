@@ -16,15 +16,19 @@ bool entrada(Registro Libros[],int *cant_libros)
     char condicion[9]= {""};
     char *meses[] = {"enero", "febrero", "marzo", "abril", "mayo", "junio",
                      "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"};
-    bool guardar = true;
-    (*cant_libros) =0;
 
 
     printf("Introduzca los datos de los libros, solo hay espacio para 5 libros.\n");
+
+
+    bool guardar = false;
+    (*cant_libros) =0;
+
+
     do {
         system("cls");
         fflush(stdin);
-        printf("Libro #%d\n",i+1);
+        printf("Libro %d\n",i+1);
         printf("Sino posee el dato del libro, introduzca -1\n");
         printf("-------------------------------------------\n");
         printf("Introduzca el t\241tulo del libro:\n");
@@ -41,13 +45,14 @@ bool entrada(Registro Libros[],int *cant_libros)
         printf("Introduzca la materia del libro:\n");
         validar_char(Libros[i].materia,sizeof(Libros[i].materia)/sizeof(char));
         printf("-------------------------------------------\n");
-        printf("Introduzca el a\244o donde se publicac\242 el libro:\n");
-        printf("Tenga en cuenta que tiene que ser antes del 2023 que es nuestro a\244o actual.\n");
-        validar_anno(&Libros[i].anno);
-        printf("-------------------------------------------\n");
         printf("Introduzca la cantidad de copias del libro:\n");
         validar_numero(&Libros[i].copias);
         printf("-------------------------------------------\n");
+        printf("Introduzca el a\244o donde se publicac\242 el libro:\n");
+        printf("Tenga en cuenta que tiene que ser antes del 2023 que es nuestra a\244o actual.\n");
+        validar_anno(&Libros[i].anno);
+        printf("-------------------------------------------\n");
+        printf("Prestamos por mes:\n");
         for (j = 0; j < MESES; j++)
         {
             printf("Introduzca los pr\202stamos en %s:\n", meses[j]);
