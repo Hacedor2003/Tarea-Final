@@ -62,16 +62,19 @@ void menu(Registro Libros[])
             elegir_menu(Libros);
         }
         break;
-        case 3: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                 *                      Hay mejores maneras de modelar la salida del menú */
-            break;
+        case 3:
+        {
+            printf("Terminando programa...\n");
+        }
+        break;
 
         default:
+        {
             printf("Opci\242n inv\240lida. Por favor, seleccione una de las 3 opciones.\n");
 
             system("pause");
-
-            break;
+        }
+        break;
         }
     } while (resp != 3);
 }
@@ -108,16 +111,22 @@ void elegir_menu(Registro Libros[])
         }
 
         break;
-        case 3: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                 *                      Hay mejores maneras de modelar la salida del menú */
-            break;
+        case 3:
+        {
+            printf("Volviendo...\n");
+
+            system("pause");
+        }
+        break;
 
         default:
+        {
             printf("Opci\242n inv\240lida. Por favor, seleccione una de las 3 opciones.\n");
 
             system("pause");
 
             break;
+        }
         }
     } while (resp != 3);
 }
@@ -249,16 +258,21 @@ void menu_listados(Registro Libros[])
             system("pause");
         }
         break;
-        case 8: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                 *                      Hay mejores maneras de modelar la salida del menú */
-            break;
+        case 8:
+        {
+            printf("Volviendo...\n");
+
+            system("pause");
+        }
+        break;
 
         default:
+        {
             printf("Opci\242n inv\240lida. Por favor, seleccione un n\243mero del 1 al 8.\n");
 
             system("pause");
-
-            break;
+        }
+        break;
         }
         system("cls");
     } while (resp != 8);
@@ -403,16 +417,21 @@ void menu_reportes(Registro Libros[])
             system("pause");
         }
         break;
-        case 6: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                 *                      Hay mejores maneras de modelar la salida del menú */
-            break;
+        case 6:
+        {
+            printf("Volviendo...\n");
+
+            system("pause");
+        }
+        break;
 
         default:
+        {
             printf("Opci\242n inv\240lida. Por favor, seleccione un n\243mero del 1 al 6.\n");
 
             system("pause");
-
-            break;
+        }
+        break;
         }
 
         system("cls");

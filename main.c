@@ -1,4 +1,4 @@
-#include "Interfaz/Menus.h"
+#include "Interfaz\Menus.h"
 
 
 /* En un centro de investigación se desea llevar un registro de los libros que se
