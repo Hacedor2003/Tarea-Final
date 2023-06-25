@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-
 #include "../Interfaz/Menus.h"
 #include "../Interfaz/Salidas.h"
 #include "../Interfaz/validacion.h"
@@ -11,17 +10,17 @@
 #include "Datos.h"
 #include "Logica.h"
 
-
 /* Menu Principal */
-void menu(Registro Libros[] ) {
+void menu(Registro Libros[])
+{
     int resp = 0;
     int cant_libros = LIBROS;
     bool guardar = true;
 
     char respuesta[9] = {""};
 
-
-    do {
+    do
+    {
         system("cls");
 
         printf("*******Bienvenido al centro de investigaci\242n*******\n");
@@ -35,58 +34,54 @@ void menu(Registro Libros[] ) {
 
         resp = validar_respuesta(respuesta, 9);
 
+        switch (resp)
+        {
+        case 1:
+        {
+            inicializar_cero(Libros);
 
-        switch (resp) {
-            case 1:
-                inicializar_cero(Libros);
+            guardar = entrada(Libros, &cant_libros);
 
+            if (!guardar)
+            {
+                inicializar(Libros);
+            }
 
-                guardar = entrada(Libros, &cant_libros);
+            elegir_menu(Libros);
+        }
+        break;
+        case 2:
+        {
+            guardar = false;
 
+            if (!guardar)
+            {
+                inicializar(Libros);
+            }
 
-                if (!guardar) {
-                    inicializar(Libros);
-                }
+            elegir_menu(Libros);
+        }
+        break;
+        case 3: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
+                 *                      Hay mejores maneras de modelar la salida del menú */
+            break;
 
+        default:
+            printf("Opci\242n inv\240lida. Por favor, seleccione una de las 3 opciones.\n");
 
-                elegir_menu(Libros);
+            system("pause");
 
-
-                break;
-            case 2:
-                guardar = false;
-
-
-                if (!guardar) {
-                    inicializar(Libros);
-                }
-
-
-                elegir_menu(Libros);
-
-
-                break;
-            case 3:         /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                             *                      Hay mejores maneras de modelar la salida del menú */
-                break;
-
-            default:
-                printf("Opci\242n inv\240lida. Por favor, seleccione una de las 3 opciones.\n");
-
-                system("pause");
-
-
-                break;
+            break;
         }
     } while (resp != 3);
 }
 
 /* Menu para escojer reportes o listados */
-void elegir_menu(Registro Libros[] ) {
+void elegir_menu(Registro Libros[])
+{
     int resp = 0;
 
     char respuesta[9] = {""};
-
 
     do
     {
@@ -97,46 +92,45 @@ void elegir_menu(Registro Libros[] ) {
         printf("2.Menu Reportes \n");
         printf("3.Terminar \n");
 
-
         resp = validar_respuesta(respuesta, 9);
 
+        switch (resp)
+        {
+        case 1:
+        {
+            menu_listados(Libros);
+        }
 
-        switch (resp) {
-            case 1:
-                menu_listados(Libros);
+        break;
+        case 2:
+        {
+            menu_reportes(Libros);
+        }
 
+        break;
+        case 3: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
+                 *                      Hay mejores maneras de modelar la salida del menú */
+            break;
 
-                break;
-            case 2:
-                menu_reportes(Libros);
+        default:
+            printf("Opci\242n inv\240lida. Por favor, seleccione una de las 3 opciones.\n");
 
+            system("pause");
 
-                break;
-            case 3:         /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                             *                      Hay mejores maneras de modelar la salida del menú */
-                break;
-
-            default:
-                printf("Opci\242n inv\240lida. Por favor, seleccione una de las 3 opciones.\n");
-
-                system("pause");
-
-
-                break;
+            break;
         }
     } while (resp != 3);
 }
 
 /* Menu para mostrar los datos de los libros*/
-void menu_listados(Registro Libros[] ) {
+void menu_listados(Registro Libros[])
+{
     int i;
     int contador;
 
     int resp = 0;
 
-
     system("cls");
-
 
     do
     {
@@ -157,136 +151,127 @@ void menu_listados(Registro Libros[] ) {
             printf("Introduzca (1-8) acorde a las necesidades:\n");
             scanf("%d", &resp);
 
-
-            if (isalpha(resp) ) {
+            if (isalpha(resp))
+            {
                 printf("Error, por favor, ingrese un valor num\202rico.\n");
             }
-        } while (isalpha(resp) );
+        } while (isalpha(resp));
 
+        switch (resp)
+        {
+        case 1:
+        {
+            contador = 0;
 
-        switch (resp) {
-            case 1:
-                contador = 0;
+            mostrar_identificadores(Libros, &contador);
+            no_existe(contador);
 
+            system("pause");
+        }
+        break;
+        case 2:
+        {
+            contador = 0;
 
-                mostrar_identificadores(Libros, &contador);
-                no_existe(contador);
+            for (i = 0; i < LIBROS; i++)
+            {
+                mostrar_char(Libros[i].titulo, i, &contador);
+            }
 
-                system("pause");
+            no_existe(contador);
 
+            system("pause");
+        }
+        break;
+        case 3:
+        {
+            contador = 0;
 
-                break;
-            case 2:
-                contador = 0;
+            for (i = 0; i < LIBROS; i++)
+            {
+                mostrar_char(Libros[i].autor, i, &contador);
+            }
 
+            no_existe(contador);
 
-                for (i = 0; i < LIBROS; i++) {
-                    mostrar_char(Libros[i].titulo, i, &contador);
-                }
+            system("pause");
+        }
+        break;
+        case 4:
+        {
+            contador = 0;
 
+            for (i = 0; i < LIBROS; i++)
+            {
+                mostrar_int(Libros[i].anno, i, &contador);
+            }
 
-                no_existe(contador);
+            no_existe(contador);
 
-                system("pause");
+            system("pause");
+        }
+        break;
+        case 5:
+        {
+            contador = 0;
 
+            for (i = 0; i < LIBROS; i++)
+            {
+                mostrar_char(Libros[i].materia, i, &contador);
+            }
 
-                break;
-            case 3:
-                contador = 0;
+            no_existe(contador);
 
+            system("pause");
+        }
+        break;
+        case 6:
+        {
+            contador = 0;
 
-                for (i = 0; i < LIBROS; i++) {
-                    mostrar_char(Libros[i].autor, i, &contador);
-                }
+            for (i = 0; i < LIBROS; i++)
+            {
+                mostrar_int(Libros[i].copias, i, &contador);
+            }
 
+            no_existe(contador);
 
-                no_existe(contador);
+            system("pause");
+        }
+        break;
+        case 7:
+        {
+            contador = 0;
 
-                system("pause");
+            mostrar_prestamos(Libros, &contador);
+            no_existe(contador);
 
+            system("pause");
+        }
+        break;
+        case 8: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
+                 *                      Hay mejores maneras de modelar la salida del menú */
+            break;
 
-                break;
-            case 4:
-                contador = 0;
+        default:
+            printf("Opci\242n inv\240lida. Por favor, seleccione un n\243mero del 1 al 8.\n");
 
+            system("pause");
 
-                for (i = 0; i < LIBROS; i++) {
-                    mostrar_int(Libros[i].anno, i, &contador);
-                }
-
-
-                no_existe(contador);
-
-                system("pause");
-
-
-                break;
-            case 5:
-                contador = 0;
-
-
-                for (i = 0; i < LIBROS; i++) {
-                    mostrar_char(Libros[i].materia, i, &contador);
-                }
-
-
-                no_existe(contador);
-
-                system("pause");
-
-
-                break;
-            case 6:
-                contador = 0;
-
-
-                for (i = 0; i < LIBROS; i++) {
-                    mostrar_int(Libros[i].copias, i, &contador);
-                }
-
-
-                no_existe(contador);
-
-                system("pause");
-
-
-                break;
-            case 7:
-                contador = 0;
-
-
-                mostrar_prestamos(Libros, &contador);
-                no_existe(contador);
-
-                system("pause");
-
-
-                break;
-            case 8:         /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                             *                      Hay mejores maneras de modelar la salida del menú */
-                break;
-
-            default:
-                printf("Opci\242n inv\240lida. Por favor, seleccione un n\243mero del 1 al 8.\n");
-
-                system("pause");
-
-
-                break;
+            break;
         }
         system("cls");
     } while (resp != 8);
 }
 
 /*Menu para mostrar los reportes*/
-void menu_reportes(Registro Libros[] ) {
+void menu_reportes(Registro Libros[])
+{
     int contador;
 
     int resp = 0;
 
-
     system("cls");
-
 
     do
     {
@@ -298,7 +283,6 @@ void menu_reportes(Registro Libros[] ) {
         printf("5. Dado el identificador de un libro, mostrar toda su informaci\242n.\n");
         printf("6. Terminar reportes.\n");
 
-
         do
         {
             fflush(stdin);
@@ -306,135 +290,130 @@ void menu_reportes(Registro Libros[] ) {
             printf("Introduzca (1-6) acorde a las necesidades:\n");
             scanf("%d", &resp);
 
-
-            if (isalpha(resp) ) {
+            if (isalpha(resp))
+            {
                 printf("Error, por favor, ingrese un valor num\202rico.\n");
             }
-        } while (isalpha(resp) );
+        } while (isalpha(resp));
 
+        switch (resp)
+        {
+        case 1:
+        {
+            int mes;
+            int fin;
+            int valor;
+            int posicion;
 
-        switch (resp) {
-            case 1: {
-                int mes;
-                int fin;
-                int valor;
-                int posicion;
+            contador = 0;
 
-                contador = 0;
+            system("cls");
 
+            printf("1. Devolver los libros que en alg\243n mes fueron prestados todos sus ejemplares.\n\n");
 
-                system("cls");
+            for (posicion = 0; posicion < LIBROS; posicion++)
+            {
+                bool activar_nombre[2] = {false, false};
 
-                printf("1. Devolver los libros que en alg\243n mes fueron prestados todos sus ejemplares.\n\n");
+                fin = 12;
+                valor = 0;
 
+                verificar_nombre_prestado(Libros, activar_nombre, &contador, posicion);
+                mostrar_nombre_libros_prestados(Libros, activar_nombre, posicion);
 
-                for (posicion = 0; posicion < LIBROS; posicion++) {
-                    bool activar_nombre[2] = {false, false};
+                if (activar_nombre[0])
+                {
+                    for (mes = 0; mes < MESES; mes++)
+                    {
+                        bool activar_mes = false;
 
-                    fin = 12;
-                    valor = 0;
+                        valor = calcular_libros_prestados(Libros, &activar_mes, posicion, mes);
 
+                        if (activar_mes)
+                        {
+                            mostrar_libros_prestados(&activar_mes, &contador, valor);
+                        }
+                        else
+                        {
+                            fin--;
+                        }
 
-                    verificar_nombre_prestado(Libros, activar_nombre, &contador, posicion);
-                    mostrar_nombre_libros_prestados(Libros, activar_nombre, posicion);
-
-
-                    if (activar_nombre[0]) {
-                        for (mes = 0; mes < MESES; mes++) {
-                            bool activar_mes = false;
-
-                            valor = calcular_libros_prestados(Libros, &activar_mes, posicion, mes);
-
-
-                            if (activar_mes) {
-                                mostrar_libros_prestados(&activar_mes, &contador, valor);
-                            } else {
-                                fin--;
-                            }
-
-                            if (fin == 0) {
-                                printf("No fueron prestados todos sus ejemplares\n");
-                            }
+                        if (fin == 0)
+                        {
+                            printf("No fueron prestados todos sus ejemplares\n");
                         }
                     }
                 }
-
-
-                system("pause");
-
-
-                break;
             }
-            case 2:
-                system("cls");
 
-                printf("2. Devolver los datos de los libros que pertenecen a una materia dada.\n\n");
+            system("pause");
 
-                libros_materia(Libros);
+            break;
+        }
+        case 2:
+            system("cls");
 
-                system("pause");
+            printf("2. Devolver los datos de los libros que pertenecen a una materia dada.\n\n");
+
+            libros_materia(Libros);
+
+            system("pause");
 
             int mayor_valor = 0;
             int contador = 0;
             int guardar_libro = 0;
 
-                break;
-            case 3:
-                system("cls");
+            break;
+        case 3:
+            system("cls");
 
-                printf("3. Mostrar un reporte por a\244o de publicaci\242n con todos los datos de los libros del centro.\n\n");
+            printf("3. Mostrar un reporte por a\244o de publicaci\242n con todos los datos de los libros del centro.\n\n");
 
-                libros_anno(Libros);
+            libros_anno(Libros);
 
-                system("pause");
+            system("pause");
 
+            break;
+        case 4:
+        {
+            int contador = 0;
+            int mayor_valor = 0;
+            int guardar_libro = 0;
 
-                break;
-            case 4: {
-                int contador = 0;
-                int mayor_valor = 0;
-                int guardar_libro = 0;
+            system("cls");
 
+            printf("4. Devolver el primer libro que m\240s veces se ha prestado.\n\n");
 
-                system("cls");
+            mayor_valor = calcular_libros_mas_prestados(Libros, &contador, &guardar_libro);
 
-                printf("4. Devolver el primer libro que m\240s veces se ha prestado.\n\n");
+            libros_mas_prestados(Libros, &guardar_libro, mayor_valor, &contador);
 
+            system("pause");
 
-                mayor_valor = calcular_libros_mas_prestados(Libros, &contador, &guardar_libro);
-
-
-                libros_mas_prestados(Libros, &guardar_libro, mayor_valor, &contador);
-
-                system("pause");
-
-
-                break;
-            }
-            case 5:
-                system("cls");
-
-                printf("5. Dado el identificador de un libro, mostrar toda su informaci\242n.\n\n");
-
-                libros_identificador(Libros);
-
-                system("pause");
-
-
-                break;
-            case 6:         /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
-                             *                      Hay mejores maneras de modelar la salida del menú */
-                break;
-
-            default:
-                printf("Opci\242n inv\240lida. Por favor, seleccione un n\243mero del 1 al 6.\n");
-
-                system("pause");
-
-
-                break;
+            break;
         }
+        case 5:
+        {
+            system("cls");
 
+            printf("5. Dado el identificador de un libro, mostrar toda su informaci\242n.\n\n");
+
+            libros_identificador(Libros);
+
+            system("pause");
+        }
+        break;
+        case 6: /* CORRECCIÓN: (Lógica) Tener un case vacío no tiene mucho sentido.
+                 *                      Hay mejores maneras de modelar la salida del menú */
+            break;
+
+        default:
+            printf("Opci\242n inv\240lida. Por favor, seleccione un n\243mero del 1 al 6.\n");
+
+            system("pause");
+
+            break;
+        }
 
         system("cls");
     } while (resp != 6);
