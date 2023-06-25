@@ -16,8 +16,6 @@ void menu(Registro Libros[])
     int resp =0;
     char respuesta[9]={""};
     bool guardar = true;
-
-
     do{
         system("cls");
         printf("*******Bienvenido al centro de investigaci\242n*******\n");
@@ -29,8 +27,6 @@ void menu(Registro Libros[])
 
 
         resp = validar_respuesta(respuesta,9);
-
-
         switch (resp) {
         case 1:
             inicializar_cero(Libros);
@@ -74,8 +70,6 @@ void elegir_menu(Registro Libros[])
 
 
         resp = validar_respuesta(respuesta,9);
-
-
         switch (resp) {
         case 1:
             menu_listados(Libros);
@@ -124,8 +118,6 @@ void menu_listados(Registro Libros[])
                 printf("Error, por favor, ingrese un valor num\202rico.\n");
             }
         } while (isalpha(resp));
-
-
         switch (resp)
         {
         case 1:
@@ -140,7 +132,8 @@ void menu_listados(Registro Libros[])
             contador =0;
 
 
-            for(i=0;i < LIBROS;i++){
+            for(i=0;i < LIBROS;i++)
+            {
                 mostrar_char(Libros[i].titulo,i,&contador);
             }
             no_existe(contador);
@@ -233,8 +226,6 @@ void menu_reportes(Registro Libros[])
                 printf("Error, por favor, ingrese un valor num\202rico.\n");
             }
         } while (isalpha(resp));
-
-
         switch (resp) {
         case 1:
             system("cls");

@@ -156,13 +156,10 @@ int validar_respuesta(char arreglo[],int cantidad)
     int i;
     int respuesta =0;
     int tamano;
-    int opciones =2;
     char *si[] = {"si","1"};
     char *no[] = {"no","2"};
     char *terminar[] = {"terminar","3"};
     char comparar1[9] = {""};
-
-
     do{
         fflush(stdin);
         tamano = cantidad;
@@ -180,7 +177,7 @@ int validar_respuesta(char arreglo[],int cantidad)
             }
         }
     }while (arreglo[0] == '\n');
-    for(i=0; i < opciones ; i++)
+    for(i=0; i < 2; i++)
     {
         if(strcmp(comparar1,si[i])==0){
             respuesta = 1;

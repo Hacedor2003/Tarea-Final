@@ -77,8 +77,6 @@ bool entrada(Registro Libros[],int *cant_libros)
 
 
             respuesta = validar_respuesta(condicion,9);
-
-
             if(respuesta == 1)
             {
                 i =LIBROS;

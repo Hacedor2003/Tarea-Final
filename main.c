@@ -15,9 +15,8 @@ d) Devolver el primer libro que más veces se ha prestado.
 e) Dado el identificador de un libro, mostrar toda su información. */
 
 
-/* Asumo que solo hay espacio para 5 libros en la librería. */
-/* El espacio de los libros se puede cambiar en Datos.h pero los datos inicializados de manera automatica mostraran caracteres extraños
-  si son mas de 5 libros.*/
+/* Asumo que solo hay espacio para 5 libros en la librería */
+/* El espacio de los libros se puede cambiar en Datos.h*/
 
 
 int main(void) {
