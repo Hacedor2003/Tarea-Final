@@ -90,6 +90,8 @@ void validar_titulo(Registro Libros[], int posicion)
 {
     int i;
     int condicion;
+
+
     do{
         validar_char(Libros[posicion].titulo,sizeof(Libros[i].autor)/sizeof(char));
         for (i = 0; i < LIBROS; i++)
@@ -97,6 +99,7 @@ void validar_titulo(Registro Libros[], int posicion)
             if (i != posicion && strcmp(Libros[i].titulo, Libros[posicion].titulo) == 0)
             {
                 printf("Ya existe, introduzca otro.\n");
+                i = LIBROS;
                 condicion = 0;
             }
             else if(strcmp(Libros[i].titulo, "-1")== 0){

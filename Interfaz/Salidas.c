@@ -48,24 +48,17 @@ bool entrada(Registro Libros[],int *cant_libros)
         printf("Introduzca la cantidad de copias del libro:\n");
         validar_numero(&Libros[i].copias);
         printf("-------------------------------------------\n");
-        if(Libros[i].copias != 0)
+        for (j = 0; j < MESES; j++)
         {
-            printf("Prestamos por mes:\n");
-            for (j = 0; j < MESES; j++)
-            {
-                printf("Introduzca los pr\202stamos en %s:\n", meses[j]);
-                validar_prestamos(&Libros[i].numero_prestamos[j],Libros,i);
-            }
-        }
-        else {
-            printf("Sino existen copias no pueden haber prestamos.\n");
-            system("pause");
+            printf("Introduzca los pr\202stamos en %s:\n", meses[j]);
+            validar_prestamos(&Libros[i].numero_prestamos[j],Libros,i);
         }
         if(i == LIBROS-1)
         {
             printf("La librer\241a est\240 llena.\n");
-            system("pause");
+            guardar = true;
             i = LIBROS;
+            system("pause");
         }
         else if(i < LIBROS-1)
         {
@@ -73,24 +66,22 @@ bool entrada(Registro Libros[],int *cant_libros)
             printf("Desea terminar de a\244adir libros?\n");
             printf("1.Si \n");
             printf("2.No \n");
-            printf("3.Usar los libros que ya exist\241an, tenga en cuenta que sobrescribir\240 la informaci\242n introducida.\n");
-
-
+            printf("3.Usar los libros que ya existent\241an, tenga en cuenta que sobrescribir\240 la informaci\242n introducida.\n");
             respuesta = validar_respuesta(condicion,9);
             if(respuesta == 1)
             {
-                i =LIBROS;
                 (*cant_libros)++;
+                i =LIBROS;
                 guardar = true;
             }
-            else if(respuesta ==2)
-            {
-                i++;
+            else if(respuesta ==2) {
                 (*cant_libros)++;
+                i++;
+                guardar = true;
             }
             else if(respuesta == 3 ){
-                i = LIBROS;
                 (*cant_libros) = LIBROS;
+                i = LIBROS;
                 guardar = false;
                 printf("Se han restablecido los datos\n");
                 system("pause");
