@@ -1,7 +1,6 @@
 #include "Salidas.h"
 
 
-
 void validar_identificador(Registro Libros[], int posicion);
 
 void validar_titulo(Registro Libros[], int posicion);

@@ -7,8 +7,8 @@
 #include "../Interfaz/Salidas.h"
 #include "../Interfaz/validacion.h"
 
-#include "Datos.h"
-#include "Logica.h"
+#include "Logica/Datos.h"
+#include "Logica/Logica.h"
 
 /* Menu Principal */
 void menu(Registro Libros[])
@@ -29,8 +29,6 @@ void menu(Registro Libros[])
         printf("1.Si \n");
         printf("2.No \n");
         printf("3.Terminar \n");
-
-        resp = validar_respuesta(respuesta, 9);
 
         resp = validar_respuesta(respuesta, 9);
 
@@ -372,10 +370,6 @@ void menu_reportes(Registro Libros[])
             libros_materia(Libros);
 
             system("pause");
-
-            int mayor_valor = 0;
-            int contador = 0;
-            int guardar_libro = 0;
 
             break;
         case 3:
